@@ -1,0 +1,114 @@
+<app-toolbar></app-toolbar>
+<html>
+
+<body>
+<h2>Search</h2>
+
+<mat-card style="text-align: center">
+
+  <form>
+    <mat-form-field appearance="fill">
+      <input matInput placeholder="text" type="text" [(ngModel)]="text" name="text">
+    </mat-form-field>
+
+    <button mat-mini-fab (click)="getAllTasksByText(text)">
+      <mat-icon>search</mat-icon>
+    </button>
+
+  </form>
+
+</mat-card>
+
+<mat-card style="text-align: center">
+
+  <mat-form-field appearance="fill">
+    <mat-label>Select an user</mat-label>
+
+    <mat-select [(value)]="selectedUser">
+      <mat-option>None</mat-option>
+      <mat-option *ngFor="let user of users" [value]="user">{{user.firstName}} {{user.lastName}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button mat-mini-fab (click)="getAllTasksByUserUsername(selectedUser.username)">
+    <mat-icon>search</mat-icon>
+  </button>
+
+
+</mat-card>
+
+
+<mat-card class="demo-inline-calendar-card" >
+
+  <mat-calendar [(selected)]="selected"></mat-calendar>
+
+  <button mat-mini-fab (click)="getAllTasksAfterDate(selected)">
+    <mat-icon>search</mat-icon>
+  </button>
+
+
+</mat-card>
+
+<mat-card style="text-align: center">
+
+  <mat-form-field appearance="fill">
+    <mat-label>Select a status</mat-label>
+
+    <mat-select [(value)]="selectedStatus">
+
+      <mat-option value="NEW">NEW</mat-option>
+      <mat-option value="IN_PROGRESS">IN PROGRESS</mat-option>
+      <mat-option value="DONE">DONE</mat-option>
+
+    </mat-select>
+  </mat-form-field>
+
+  <button mat-mini-fab (click)="getAllTasksByStatus(selectedStatus)">
+    <mat-icon>search</mat-icon>
+  </button>
+
+
+</mat-card>
+
+
+  <div>
+  <table mat-table [dataSource]="dataSourceTasks" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="dueDate">
+      <th mat-header-cell *matHeaderCellDef> Due date</th>
+      <td mat-cell *matCellDef="let task">{{task.dueDate}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="subject">
+      <th mat-header-cell *matHeaderCellDef> Subject</th>
+      <td mat-cell *matCellDef="let task"> {{task.subject}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef> Status</th>
+      <td mat-cell *matCellDef="let task">{{task.status}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="assigned">
+      <th mat-header-cell *matHeaderCellDef> Assigned</th>
+      <td mat-cell *matCellDef="let task">{{task.userFirstName}} {{task.userLastName}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let task">
+        <button mat-mini-fab  (click)="openDialogUpdateTask(task.id)">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  </div>
+
+
+</body>
+</html>
+<router-outlet></router-outlet>

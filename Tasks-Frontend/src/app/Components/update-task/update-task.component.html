@@ -1,0 +1,62 @@
+<h2 mat-dialog-title>Update task</h2>
+
+
+<mat-dialog-content class="register-dialog">
+  <section >
+    <mat-checkbox color="primary" [(ngModel)]="disabled">View</mat-checkbox>
+  </section>
+  <div>
+
+    <p *ngIf="!disabled">Id: {{task.id}} </p>
+
+
+    <form [formGroup]="registrationForm">
+      Due date:
+      <mat-form-field appearance="fill">
+        <input matInput [readonly]="this.disabled" formControlName="dueDate" placeholder="dueDate" [(ngModel)]="dueDate" type="text" >
+      </mat-form-field>
+
+      <br>
+      Subject:
+      <mat-form-field appearance="fill">
+          <textarea [readonly]="this.disabled"
+                    style="overflow:hidden"
+                    cdkTextareaAutosize
+                    cdkAutosizeMinRows="1"
+                    cdkAutosizeMaxRows="5" matInput formControlName="subject" placeholder="subject"
+                    [(ngModel)]="subject" type="text">
+          </textarea>
+      </mat-form-field>
+      <br>
+      Status:
+      <mat-form-field appearance="fill">
+        <mat-select [disabled]="disabled.valueOf()" [(value)]="selectedStatus" formControlName="status">
+
+          <mat-option value="NEW">NEW</mat-option>
+          <mat-option value="IN_PROGRESS">IN PROGRESS</mat-option>
+          <mat-option value="DONE">DONE</mat-option>
+
+        </mat-select>
+
+<!--        <input matInput [readonly]="this.disabled" formControlName="status" placeholder="status" [(ngModel)]="status" type="text">-->
+      </mat-form-field>
+      <br>
+      Assigned:
+      <mat-form-field appearance="fill">
+        <mat-select [disabled]="disabled.valueOf()" [(value)]="selectedUser" formControlName="username">
+          <mat-option *ngFor="let user of users" [value]="user.username">{{user.firstName}} {{user.lastName}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+<!--      <mat-form-field appearance="fill">-->
+<!--        <input matInput [readonly]="this.disabled" formControlName="userId" placeholder="userId" [(ngModel)]="userId" type="number">-->
+<!--      </mat-form-field>-->
+
+    </form>
+
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-raised-button mat-dialog-close>Cancel</button>
+  <button mat-raised-button [disabled]="disabled" [mat-dialog-close]="true" (click)="submit()">Submit</button>
+</mat-dialog-actions>

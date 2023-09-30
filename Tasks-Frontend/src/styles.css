@@ -1,0 +1,63 @@
+/* You can add global styles to this file, and also import other style files */
+/*
+#314455
+#644E5B
+#9E5A63
+#C96567
+#97AABD*/
+
+/*html, body { height: 100%; }*/
+/*body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }*/
+
+
+html, body {
+/*height: 100%;*/
+  background: #FFFFFF;
+
+
+}
+p {
+  font-size: 17px;
+}
+body {
+  margin: 10px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+
+}
+
+.mat-card {
+  background: #cb787a;
+  margin-top: 10px;
+/*max-width: 400px;*/
+/*text-align: center;*/
+/*alignment: center;*/
+}
+
+.mat-raised-button:not([icon]), .mat-fab:not([icon]), .mat-mini-fab:not([icon]) {
+  margin: 5px;
+  background: #9E5A63;
+}
+
+.mat-expansion-panel {
+  background: white
+}
+
+.mat-dialog-content {
+  width: 350px;
+  text-align: center;
+}
+
+.register-dialog {
+  background-color: #cb787a;
+}
+
+.mat-header-cell {
+  font-weight: bold;
+  color: black;
+  font-size: 14px;
+}
+
+table {
+  width: 100%;
+  text-align: left;
+}

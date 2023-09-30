@@ -1,0 +1,16 @@
+<router-outlet></router-outlet>
+
+<mat-toolbar>
+
+
+  <button mat-raised-button routerLink="/MyTasks" mat-raised-button>My Tasks</button>
+  <button mat-raised-button routerLink="/Search" mat-raised-button>Search</button>
+  <button mat-raised-button routerLink="/NewTask" mat-raised-button>New Task</button>
+
+
+  <span class="example-spacer"></span>
+  <button mat-mini-fab (click)="logout()">
+    <mat-icon class="material-icons-outlined">logout</mat-icon>
+  </button>
+
+</mat-toolbar>
